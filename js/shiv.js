@@ -1,7 +1,8 @@
 var shiv = {
-  version : '0.01',
-  loading : false,
-  modules : {}
+  version    : '0.01',
+  loading    : false,
+  shivPrefix : '',
+  modules    : {}
 };
 
 shiv.addOnLoad = (function() {
@@ -85,13 +86,19 @@ shiv.get = function(opts) {
 }
 
 shiv.load = function(res) {
-  shiv.get({
-      url      : res,
-      sync     : true,
-      callback : function(data) {
-        shiv.log("Callback for resource " + res.toString() + " succeeded.");
-        eval(data); // Yeah, yeah, I know - eval is evil.
-      }
-    });
+  if (shiv.modules[res] != null) {
+    shiv.log("shiv.load : Resource " + res + " already loaded");
+  } else {
+
+    shiv.get({
+        url      : shiv.shivPrefix + res + '.js',
+        sync     : true,
+        callback : function(data) {
+          shiv.modules[res] = true;
+          shiv.log("shiv.load.callback : loading resource " + res.toString() + " succeeded.");
+          eval(data); // Yeah, yeah, I know - eval is evil.
+        }
+      });
+  }
 }
 
