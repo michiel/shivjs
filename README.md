@@ -9,7 +9,9 @@ Example:
 
     <script type="text/javascript" src="shiv.js"></script>
     <script type="text/javascript">
-      shiv.load("shiv-util");
+      shiv.addOnLoad(function() {
+        shiv.load("../js/shiv-util.js");
+      });
     </script>
 
 
