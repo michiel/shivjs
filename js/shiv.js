@@ -6,10 +6,7 @@ var shiv = {
 };
 
 shiv.addOnLoad = (function() {
-    var onload = null;
-    if (window.onload != null) {
-      onload = window.onload;
-    }
+    var onload = window.onload;
     var loadqueue = [];
     window.onload = function() {
       onload && onload();
