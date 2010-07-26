@@ -28,3 +28,13 @@ shiv.memo = function(arr, func) {
   return mem;
 }
 
+shiv.contains = function(arr, value) {
+  var found = false;
+  for (var i=0; i<arr.length; i++) {
+    if (arr[i] == value) {
+      found = true;
+    }
+  }
+  return found;
+}
+
