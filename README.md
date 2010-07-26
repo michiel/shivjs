@@ -10,7 +10,8 @@ Example:
     <script type="text/javascript" src="shiv.js"></script>
     <script type="text/javascript">
       shiv.addOnLoad(function() {
-        shiv.load("../js/shiv-util.js");
+        shiv.shivPrefix = "../js/";
+        shiv.load("shiv-util");
       });
     </script>
 
