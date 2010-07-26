@@ -38,3 +38,11 @@ shiv.contains = function(arr, value) {
   return found;
 }
 
+shiv.runAll = function(arr) {
+  var ret = [];
+  for (var i=0; i<arr.length; i++) {
+    ret.push(arr[i]());
+  }
+  return ret;
+}
+
