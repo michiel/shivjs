@@ -4,6 +4,12 @@ var shiv = {
   modules : {}
 };
 
+shiv.log = (function() {
+    return function(msg) {
+      console.debug(msg);
+    };
+  })();
+
 shiv.xhr = (function() {
   if (typeof XMLHttpRequest != "undefined") {
       return new XMLHttpRequest();
@@ -38,12 +44,24 @@ shiv.get = function(opts) {
 
   xhr.open(
     "GET", 
-    opts.url   || '/' , 
-    opts.async || false
+    opts.url  || '/' , 
+    opts.sync || false
   );
 
-  xhr.setRequestHeader("Connection", "close");
-
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4) {
+      switch (xhr.status) {
+      case 200: 
+        opts.callback(xhr.responseText);
+        break;
+      default:
+        shiv.log("Optimism is insufficient for this operation!");
+        break;
+      }
+    }
+  }
+  alert("sending");
+  xhr.send();
 }
 
 shiv.load = function(res) {
@@ -51,6 +69,7 @@ shiv.load = function(res) {
       url      : res,
       sync     : true,
       callback : function(data) {
+        shiv.log("Callback succeeded.");
         eval(data); // Yeah, yeah, I know - eval is evil.
       }
     });
