@@ -5,7 +5,7 @@ var shiv = {
 };
 
 shiv.log = (function() {
-    if (windows.console != null) {
+    if (window.console != null) {
       return function(msg) {
         console.debug(msg);
       };
