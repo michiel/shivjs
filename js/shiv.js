@@ -50,7 +50,7 @@ shiv.load = function(res) {
   shiv.get({
       url      : res,
       sync     : true,
-      callback : callback(data) {
+      callback : function(data) {
         eval(data); // Yeah, yeah, I know - eval is evil.
       }
     });
