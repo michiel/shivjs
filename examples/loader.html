@@ -1,12 +1,18 @@
 <html>
   <head>
+    <title>shivjs - loader</title>
     <script type="text/javascript" src="../js/shiv.js"></script>
-      <script type="text/javascript">
-        shiv.load("shiv-util");
+    <script type="text/javascript">
+      window.onload = function() {
+        shiv.load("../js/shiv-util.js");
+      }
       </script>
   </head>
 
   <body>
+    <h1>shivjs - loader</h1>
+    <div id="content">
+    </div>
 
   </body>
 

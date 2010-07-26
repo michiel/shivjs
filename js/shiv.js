@@ -60,7 +60,6 @@ shiv.get = function(opts) {
       }
     }
   }
-  alert("sending");
   xhr.send();
 }
 
@@ -69,7 +68,7 @@ shiv.load = function(res) {
       url      : res,
       sync     : true,
       callback : function(data) {
-        shiv.log("Callback succeeded.");
+        shiv.log("Callback for resource " + res.toString() + " succeeded.");
         eval(data); // Yeah, yeah, I know - eval is evil.
       }
     });
