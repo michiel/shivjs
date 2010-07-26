@@ -4,6 +4,23 @@ var shiv = {
   modules : {}
 };
 
+shiv.addOnLoad = (function() {
+    var onload = null;
+    if (window.onload != null) {
+      onload = window.onload;
+    }
+    var loadqueue = [];
+    window.onload = function() {
+      onload && onload();
+      for (var i=0; i<loadqueue.length; i++) {
+        loadqueue[i]();
+      }
+    }
+    return function(func) {
+      loadqueue.push(func);
+    }
+  })();
+
 shiv.log = (function() {
     if (window.console != null) {
       return function(msg) {
