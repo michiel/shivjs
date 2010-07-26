@@ -6,14 +6,21 @@
       shiv.addOnLoad(function() {
         shiv.shivPrefix = "../js/";
         shiv.load("shiv-util");
+        shiv.log = function(msg) {
+          var ul = document.getElementById("content")
+          var li = document.createElement("li");
+          li.appendChild(document.createTextNode(msg));
+          ul.appendChild(li);
+        }
+        shiv.log("Set up DOM logger");
       });
       </script>
   </head>
 
   <body>
     <h1>shivjs - loader</h1>
-    <div id="content">
-    </div>
+    <ul id="content">
+    </ul>
 
   </body>
 
