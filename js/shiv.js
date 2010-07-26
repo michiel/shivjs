@@ -5,9 +5,13 @@ var shiv = {
 };
 
 shiv.log = (function() {
-    return function(msg) {
-      console.debug(msg);
-    };
+    if (windows.console != null) {
+      return function(msg) {
+        console.debug(msg);
+      };
+    } else {
+      return function() {};
+    }
   })();
 
 shiv.xhr = (function() {
@@ -23,10 +27,9 @@ shiv.xhr = (function() {
 shiv.post = function(opts) {
   var xhr = shiv.xhr;
 
-  xhr.open(
-    "POST", 
-    opts.url   || '/' , 
-    opts.async || false
+  xhr.open( "POST", 
+    opts.url  || '/' , 
+    opts.sync || false
   );
 
   xhr.setRequestHeader(
@@ -37,13 +40,14 @@ shiv.post = function(opts) {
   xhr.setRequestHeader("Content-length", opts.body.length);
   xhr.setRequestHeader("Connection", "close");
 
+  xhr.send(opts.body);
+
 }
 
 shiv.get = function(opts) {
   var xhr = shiv.xhr;
 
-  xhr.open(
-    "GET", 
+  xhr.open( "GET", 
     opts.url  || '/' , 
     opts.sync || false
   );
@@ -73,7 +77,4 @@ shiv.load = function(res) {
       }
     });
 }
-
-
-
 
