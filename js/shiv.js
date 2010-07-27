@@ -30,17 +30,21 @@ shiv.log = (function() {
   })();
 
 shiv.xhr = (function() {
-  if (typeof XMLHttpRequest != "undefined") {
-      return new XMLHttpRequest();
-  } else if (typeof ActiveXObject != "undefined") {
-      return new ActiveXObject("Microsoft.XMLHTTP");
-  } else {
+    if (typeof XMLHttpRequest != "undefined") {
+      return function() {
+        return new XMLHttpRequest();
+      };
+    } else if (typeof ActiveXObject != "undefined") {
+      return function() {
+        return new ActiveXObject("Microsoft.XMLHTTP");
+      };
+    } else {
       throw new Error("XMLHttpRequest not supported");
-  }
-})();
+    }
+  })();
 
 shiv.post = function(opts) {
-  var xhr = shiv.xhr;
+  var xhr = shiv.xhr();
 
   xhr.open( "POST", 
     opts.url  || '/' , 
@@ -60,7 +64,7 @@ shiv.post = function(opts) {
 }
 
 shiv.get = function(opts) {
-  var xhr = shiv.xhr;
+  var xhr = shiv.xhr();
 
   xhr.open( "GET", 
     opts.url  || '/' , 

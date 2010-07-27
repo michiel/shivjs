@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>shivjs - loader</title>
+    <title>shivjs - tests</title>
     <style type="text/css"> 
       #content {
         width: 95%;
@@ -19,12 +19,14 @@
           ul.appendChild(li);
         }
         shiv.log("Set up DOM logger");
+        shiv.load("shiv-test");
       });
+      shiv.load("shiv-test-util");
       </script>
   </head>
 
   <body>
-    <h1>shivjs - loader</h1>
+    <h1>shivjs - tests</h1>
     <h3>Log:</h3>
     <ul id="content">
     </ul>
