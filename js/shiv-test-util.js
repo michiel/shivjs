@@ -8,11 +8,17 @@ shiv.test(
     return shiv.map([1,2,3], function(x) { return x * 2; });
   },
   function(res) {
+
+    //
+    // Array equality has to be tested element by element in JS
+    //
+
     return (
       (res[0] == 1) &&
       (res[1] == 4) &&
       (res[2] == 6)
     );
+
   }
 );
 
