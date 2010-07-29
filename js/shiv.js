@@ -90,20 +90,19 @@ shiv.load = function(res) {
   if (shiv.modules[res] != null) {
     shiv.log("shiv.load : Resource " + res + " already loaded");
   } else {
-
+    shiv.log("shiv.load : Attempting to load resource " + res);
     shiv.get({
         url      : shiv.shivPrefix + res + '.js',
         sync     : true,
         callback : function(data) {
+          shiv.log("shiv.load.callback : loading resource " + res + " succeeded.");
           shiv.modules[res] = true;
-          shiv.log("shiv.load.callback : loading resource " + res.toString() + " succeeded.");
-          try { 
+          try {
             with (top) {
               eval(data); // Yeah, yeah, I know - eval is evil.
             }
           } catch(e) {
-            shiv.log("shiv.load.callback : error eval'ing  " + res.toString() + " : " + e.toString());
-
+            shiv.log("shiv.load.callback : eval'ing resource " + res + " FAILED : " + e.toString());
           }
         }
       });
