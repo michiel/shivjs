@@ -1,4 +1,4 @@
-if (!shiv) {
+if (typeof(shiv) == "undefined") {
   throw(new Error("Don't load this file directly! Use shiv.load()"));
 }
 
@@ -91,7 +91,7 @@ shiv.some = function(arr, func) {
   var ret = false;
   for (var i=0; i<arr.length; i++) {
     if (func(arr[i])) {
-      ret = true:
+      ret = true;
     }
   }
   return !ret;

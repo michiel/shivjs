@@ -8,7 +8,7 @@ shiv.test = function(name, testfunc, resfunc) {
 
   if (!pass) {
     shiv.log("Test " + name + " : FAILED");
-    shiv.log("Test " + name + " : Expected " + res.toString() + ", got " + res.toString());
+    shiv.log("Test " + name + " : Expected " + res + ", got " + pass);
   } else {
     shiv.log("Test " + name + " : PASSED");
   }

@@ -97,7 +97,14 @@ shiv.load = function(res) {
         callback : function(data) {
           shiv.modules[res] = true;
           shiv.log("shiv.load.callback : loading resource " + res.toString() + " succeeded.");
-          eval(data); // Yeah, yeah, I know - eval is evil.
+          try { 
+            with (top) {
+              eval(data); // Yeah, yeah, I know - eval is evil.
+            }
+          } catch(e) {
+            shiv.log("shiv.load.callback : error eval'ing  " + res.toString() + " : " + e.toString());
+
+          }
         }
       });
   }

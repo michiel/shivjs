@@ -22,3 +22,35 @@ shiv.test(
   }
 );
 
+shiv.test(
+  "shiv.contains",
+  function() {
+    return shiv.contains([1,2,3], function(x) { return x == 2; });
+  },
+  function(res) {
+
+    //
+    // Array equality has to be tested element by element in JS
+    //
+
+    return (
+      (res== true)
+    );
+
+  }
+);
+
+shiv.test(
+  "shiv.memo",
+  function() {
+    return shiv.memo([1,2,3], function(x, mem) { return mem + x; });
+  },
+  function(res) {
+
+    return (
+      res == 6
+    );
+
+  }
+);
+
