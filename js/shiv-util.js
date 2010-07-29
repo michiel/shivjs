@@ -12,14 +12,6 @@ shiv.hitch = function(scope, func) {
   };
 }
 
-shiv.map = function(arr, func) {
-  var ret = [];
-  for (var i=0; i<arr.length; i++) {
-    ret.push(func(arr[i]));
-  }
-  return ret;
-}
-
 shiv.memo = function(arr, func) {
   var mem = null;
   for (var i=0; i<arr.length; i++) {
@@ -68,4 +60,49 @@ shiv.lastIndexOf = function(arr, val) {
   }
   return ret;
 }
+
+shiv.every = function(arr, func) {
+  var ret = true;
+  for (var i=0; i<arr.length; i++) {
+    if (!func(arr[i])) {
+      ret = false;
+    }
+  }
+  return ret;
+}
+
+shiv.filter = function(arr, func) {
+  var ret = [];
+  for (var i=0; i<arr.length; i++) {
+    if (func(arr[i])) {
+      ret.push(arr[i]);
+    }
+  }
+  return ret;
+}
+
+shiv.forEach = function(arr, func) {
+  for (var i=0; i<arr.length; i++) {
+    func(arr[i]);
+  }
+}
+
+shiv.some = function(arr, func) {
+  var ret = false;
+  for (var i=0; i<arr.length; i++) {
+    if (func(arr[i])) {
+      ret = true:
+    }
+  }
+  return !ret;
+}
+
+shiv.map = function(arr, func) {
+  var ret = [];
+  for (var i=0; i<arr.length; i++) {
+    ret.push(func(arr[i]));
+  }
+  return ret;
+}
+
 
