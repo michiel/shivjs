@@ -46,3 +46,26 @@ shiv.runAll = function(arr) {
   return ret;
 }
 
+//
+// Array extras, available in JS1.6+
+//
+
+shiv.indexOf = function(arr, val) {
+  for (var i=0; i<arr.length; i++) {
+    if (arr[i] == val) {
+      return i;
+    }
+  }
+  return null;
+}
+
+shiv.lastIndexOf = function(arr, val) {
+  var ret = null;
+  for (var i=0; i<arr.length; i++) {
+    if (arr[i] == val) {
+      ret = i;
+    }
+  }
+  return ret;
+}
+
