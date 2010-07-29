@@ -47,8 +47,8 @@ shiv.post = function(opts) {
   var xhr = shiv.xhr();
 
   xhr.open( "POST", 
-    opts.url  || '/' , 
-    opts.sync || false
+    opts.url      || '/' , 
+    !!!(opts.sync || false)
   );
 
   xhr.setRequestHeader(
@@ -67,8 +67,8 @@ shiv.get = function(opts) {
   var xhr = shiv.xhr();
 
   xhr.open( "GET", 
-    opts.url  || '/' , 
-    opts.sync || false
+    opts.url      || '/' , 
+    !!!(opts.sync || false)
   );
 
   xhr.onreadystatechange = function() {
