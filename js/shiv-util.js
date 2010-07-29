@@ -12,10 +12,9 @@ shiv.hitch = function(scope, func) {
   };
 }
 
-shiv.memo = function(arr, func) {
-  var mem = null;
+shiv.memo = function(arr, func, mem) {
   for (var i=0; i<arr.length; i++) {
-    func(arr[i], mem);
+    mem = func(arr[i], mem);
   }
   return mem;
 }
