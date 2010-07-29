@@ -11,14 +11,8 @@
     <script type="text/javascript">
       shiv.addOnLoad(function() {
         shiv.shivPrefix = "../js/";
+        shiv.load("shiv-domlogger");
         shiv.load("shiv-util");
-        shiv.log = function(msg) {
-          var ul = document.getElementById("content")
-          var li = document.createElement("li");
-          li.appendChild(document.createTextNode(msg));
-          ul.appendChild(li);
-        }
-        shiv.log("Set up DOM logger");
         shiv.load("shiv-test");
         shiv.load("shiv-test-util");
       });
