@@ -64,26 +64,32 @@ shiv.post = function(opts) {
 }
 
 shiv.get = function(opts) {
-  var xhr = shiv.xhr();
+  var xhr   = shiv.xhr();
+  var async = !!!(opts.sync || false);
 
   xhr.open( "GET", 
-    opts.url      || '/' , 
-    !!!(opts.sync || false)
+    opts.url || '/' , 
+    async
   );
 
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4) {
-      switch (xhr.status) {
-      case 200: 
-        opts.callback(xhr.responseText);
-        break;
-      default:
-        shiv.log("Optimism is insufficient for this operation!");
-        break;
+  if (async) {
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4) {
+        switch (xhr.status) {
+        case 200: 
+          opts.callback(xhr.responseText);
+          break;
+        default:
+          shiv.log("Optimism is insufficient for this operation!");
+          break;
+        }
       }
     }
+    xhr.send();
+  } else {
+    xhr.send();
+    opts.callback(xhr.responseText);
   }
-  xhr.send();
 }
 
 shiv.load = function(res) {
