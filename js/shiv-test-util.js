@@ -40,11 +40,46 @@ shiv.test(
     return shiv.memo([1,2,3], function(x, mem) { return mem + x; }, 0);
   },
   function(res) {
-
     return (
       res == 6
     );
-
   }
 );
+
+shiv.test(
+  "shiv.indexOf",
+  function() {
+    return shiv.indexOf([1,2,3], 2);
+  },
+  function(res) {
+    return (
+      res == 1
+    );
+  }
+);
+
+shiv.test(
+  "shiv.lastIndexOf",
+  function() {
+    return shiv.lastIndexOf([2,2,2], 2);
+  },
+  function(res) {
+    return (
+      res == 2
+    );
+  }
+);
+
+shiv.test(
+  "shiv.filter",
+  function() {
+    return shiv.filter([1,2,3], function(n) { return (n % 2 == 0); });
+  },
+  function(res) {
+    return (
+      res[0] == 2
+    );
+  }
+);
+
 
