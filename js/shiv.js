@@ -5,6 +5,8 @@ var shiv = {
   modules    : {}
 };
 
+shiv.isIE = /*@cc_on!@*/false;
+
 shiv.addOnLoad = (function() {
     var onload = window.onload;
     var loadqueue = [];
