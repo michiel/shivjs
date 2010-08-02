@@ -1,9 +1,9 @@
 var shiv = {
-  version    : '0.01',
-  loading    : false,
-  shivPrefix : '',
-  logLevel   : 1,
-  modules    : {}
+  version  : '0.01',
+  loading  : false,
+  prefix   : '',
+  logLevel : 1,
+  modules  : {}
 };
 
 shiv.isIE = /*@cc_on!@*/false;
@@ -103,7 +103,7 @@ shiv.load = function(res) {
   } else {
     shiv.log("shiv.load : Attempting to load resource " + res);
     shiv.get({
-        url      : shiv.shivPrefix + res + '.js',
+        url      : shiv.prefix + res + '.js',
         sync     : true,
         callback : function(data) {
           shiv.log("shiv.load.callback : loading resource " + res + " succeeded.");
