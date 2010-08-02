@@ -1,6 +1,5 @@
 var shiv = {
   version  : '0.0.1',
-  loading  : false,
   prefix   : '',
   logLevel : 1,
   modules  : {}
