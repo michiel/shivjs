@@ -16,7 +16,8 @@ shiv.test(
     return (
       (res[0] == 2) &&
       (res[1] == 4) &&
-      (res[2] == 6)
+      (res[2] == 6) &&
+      (res.length == 3)
     );
 
   }
@@ -29,7 +30,7 @@ shiv.test(
   },
   function(res) {
     return (
-      (res== true)
+      (res == true)
     );
   }
 );
@@ -77,7 +78,20 @@ shiv.test(
   },
   function(res) {
     return (
-      res[0] == 2
+      (res[0] == 2) &&
+      (res.length == 1)
+    );
+  }
+);
+
+shiv.test(
+  "shiv.some",
+  function() {
+    return shiv.some([1,2,3], function(n) { return (n % 2 == 0); });
+  },
+  function(res) {
+    return (
+      (res == false) 
     );
   }
 );
