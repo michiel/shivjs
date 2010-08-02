@@ -1,5 +1,5 @@
 var shiv = {
-  version  : '0.01',
+  version  : '0.0.1',
   loading  : false,
   prefix   : '',
   logLevel : 1,
@@ -48,36 +48,8 @@ shiv.xhr = (function() {
     }
   })();
 
-shiv.post = function(opts) {
-  var xhr = shiv.xhr();
-
-  xhr.open( "POST", 
-    opts.url      || '/' , 
-    !!!(opts.sync || false)
-  );
-
-  xhr.setRequestHeader(
-    "Content-type", 
-    opts.contentType || "application/json"
-  );
-
-  xhr.setRequestHeader("Content-length", opts.body.length);
-  xhr.setRequestHeader("Connection", "close");
-
-  xhr.send(opts.body);
-
-}
-
-shiv.get = function(opts) {
-  var xhr   = shiv.xhr();
-  var async = !!!(opts.sync || false);
-
-  xhr.open( "GET", 
-    opts.url || '/' , 
-    async
-  );
-
-  if (async) {
+shiv._firexhr = function(xhr, opts) {
+  if (opts.async) {
     xhr.onreadystatechange = function() {
       if (xhr.readyState == 4) {
         switch (xhr.status) {
@@ -90,11 +62,45 @@ shiv.get = function(opts) {
         }
       }
     }
-    xhr.send();
+    xhr.send(opts.body);
   } else {
-    xhr.send();
+    xhr.send(opts.body);
     opts.callback(xhr.responseText);
   }
+}
+
+shiv.post = function(opts) {
+  var xhr = shiv.xhr();
+  opts.async = !!!(opts.sync || false);
+
+  xhr.open( "POST", 
+    opts.url      || '/' , 
+    opts.async
+  );
+
+  xhr.setRequestHeader(
+    "Content-type", 
+    opts.contentType || "application/json"
+  );
+
+  xhr.setRequestHeader("Content-length", opts.body.length);
+  xhr.setRequestHeader("Connection", "close");
+
+  return shiv._firexhr(xhr, opts);
+
+}
+
+shiv.get = function(opts) {
+  var xhr   = shiv.xhr();
+  opts.async = !!!(opts.sync || false);
+
+  xhr.open( "GET", 
+    opts.url || '/' , 
+    opts.async
+  );
+
+  return shiv._firexhr(xhr, opts);
+
 }
 
 shiv.load = function(res) {
