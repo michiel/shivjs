@@ -11,9 +11,11 @@ shiv.log = (function() {
     }
   
     return function(msg) {
-      var li = document.createElement("li");
-      li.appendChild(document.createTextNode(msg));
-      ul.appendChild(li);
+      if (shiv.logLevel > 0) {
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(msg));
+        ul.appendChild(li);
+      }
     }
 
   })();

@@ -2,6 +2,7 @@ var shiv = {
   version    : '0.01',
   loading    : false,
   shivPrefix : '',
+  logLevel   : 1,
   modules    : {}
 };
 
@@ -22,9 +23,11 @@ shiv.addOnLoad = (function() {
   })();
 
 shiv.log = (function() {
-    if (window.console != null) {
+    if (!shiv.isIE && (window.console != null)) {
       return function(msg) {
-        console.debug(msg);
+        if (shiv.logLevel > 0) {
+          console.debug(msg);
+        }
       };
     } else {
       return function() {};
